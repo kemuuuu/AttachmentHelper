@@ -1,0 +1,34 @@
+<aura:component controller="AttachmentHelperController">
+
+  <aura:attribute name="selectedRecord" type="Object" default="{}"/>
+  <aura:attribute name="listOfSearchRecords" type="Object[]"/>
+  <aura:attribute name="SearchKeyWord" type="string"/>
+  <aura:attribute name="myRecordId" type="String"/>
+
+  <aura:handler name="selectedRecordEvent" event="c:SelectedRecordEvent" action="{!c.handleComponentEvent}"/>
+
+  <div onmouseleave="{!c.onblur}" aura:id="searchRes" class="slds-form-element slds-lookup slds-is-close" data-select="single">
+    <label class="slds-form-element__label" for="lookup-348">レコード検索</label>
+    <div class="slds-form-element__control">
+      <div class="slds-input-has-icon slds-input-has-icon_right">
+        <lightning:icon class="slds-input__icon slds-show" iconName="utility:search" size="x-small" alternativeText="search"/>
+        <div aura:id="lookup-pill" class="slds-pill-container slds-hide">
+          <lightning:pill class="selectedPill" label="{!v.selectedRecord.Name}" name="{!v.selectedRecord.Name}" onremove="{! c.clear }">
+            <aura:set attribute="media">
+              <lightning:icon iconName="standard:opportunity" size="x-small" alternativeText="opportunity"/>
+            </aura:set>
+          </lightning:pill>
+        </div>
+        <div aura:id="lookupField" class="slds-show">
+          <ui:inputText click="{!c.onfocus}" updateOn="keyup" keyup="{!c.keyPressController}" class="slds-lookup__search-input slds-input" value="{!v.SearchKeyWord}" placeholder="キーワードを入力してください..."/>
+        </div>
+      </div>
+    </div>
+    <ul style="min-height:40px;margin-top:0px !important" class="slds-listbox slds-listbox_vertical slds-dropdown slds-dropdown_fluid slds-lookup__menu slds" role="listbox">
+      <lightning:spinner class="slds-hide" variant="brand" size="small" aura:id="mySpinner"/>
+      <aura:iteration items="{!v.listOfSearchRecords}" var="singleRec">
+        <c:SearchRecordsResult rec="{!singleRec}"/>
+      </aura:iteration>
+    </ul>
+  </div>
+</aura:component>

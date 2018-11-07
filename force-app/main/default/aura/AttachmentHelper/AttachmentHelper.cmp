@@ -1,0 +1,29 @@
+<aura:component implements="flexipage:availableForAllPageTypes" controller="AttachmentHelperController">
+    <aura:attribute type="Object[]" name="files" />
+    <aura:attribute type="Object" name="record" />
+    <aura:attribute type="Boolean" name="isOpen" />
+    <aura:attribute type="Integer" name="per" />
+
+    <aura:handler name="selectedRecordEvent" event="c:SelectedRecordEvent" action="{!c.handleComponentEvent}"/>
+    <aura:handler name="uploadedFileEvent" event="c:UploadedFileEvent" action="{!c.handleFileEvent}" />
+
+    <div class="slds-m-horizontal_small">
+        <div class="slds-m-top_x-small">
+            <c:SearchRecords />
+        </div>
+        <div class="slds-m-top_x-small">
+            <c:FileUploader uploadingFiles="{!v.files}"/>
+        </div>
+        <aura:iteration items="{!v.files}" var="f">
+            <lightning:pill name="{!f.name}" label="{!f.name}" onremove="{!c.handleRemove}" />
+        </aura:iteration>
+    </div>
+    <div class="slds-m-top_x-large">
+        <div class="slds-m-left_x-large">
+            <lightning:button variant="success" label="ファイル添付" title="Attach a File" onclick="{!c.handleClick}" />
+        </div>
+    </div>
+    <aura:if isTrue="{!v.isOpen}">
+        <c:ProgressBar prog="{!v.per}"/>
+    </aura:if>
+</aura:component>	

@@ -1,0 +1,15 @@
+<aura:component>
+  <aura:attribute name="prog" type="Integer" default="50"/>
+
+  <div role="dialog" tabindex="-1" aria-labelledby="header99" class="slds-modal slds-fade-in-open ">
+    <div class="slds-modal__container">
+      <div class="slds-modal__header">
+        <h5 id="header99" class="slds-text-heading--medium">アップロード中...</h5>
+      </div>
+      <div class="slds-modal__content slds-p-around--medium">
+          <lightning:progressBar value="{! v.prog }" />
+      </div>
+    </div>
+  </div>
+  <div class="slds-backdrop slds-backdrop--open"></div>
+</aura:component>	

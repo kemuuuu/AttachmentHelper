@@ -1,0 +1,12 @@
+<aura:component>
+    <aura:attribute name="uploadingFiles" type="Object[]" />
+    
+    <aura:registerEvent name="uploadedFileEvent" type="c:UploadedFileEvent" />
+
+    <lightning:input type="file" 
+                     name="file" 
+                     multiple="true" 
+                     label="ファイルアップロード" 
+                     onchange="{!c.handleFileChanged}"/>
+
+</aura:component>
