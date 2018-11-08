@@ -1,11 +1,25 @@
 ({
+    initHelper: function(c, objs) {
+      var action = c.get('c.getIconName');
+      action.setParams({
+        objs: objs
+      });
+      action.setCallback(this, function(res){
+        var state = res.getState();
+        if (state === 'SUCCESS')  {
+          var r = JSON.parse(res.getReturnValue());
+          c.set('v.iconNames',r);
+        } else alert('Initial Error');
+      });
+      $A.enqueueAction(action);
+    },
+
     upload : function(component,file,fileContents){
-      console.log('helper')
       component.set('v.per', 40);
 
       var action = component.get("c.saveTheFile");
       action.setParams({
-        parentId: component.get('v.record.Id'),
+        parentId: component.get('v.record.id'),
         filename: file.name,
         base64Data: fileContents,
         filetype: file.type

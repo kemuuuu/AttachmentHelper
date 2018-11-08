@@ -68,8 +68,8 @@
 
     handleChangeSelectedRecord : function(component, event, helper) {
       var getSelectedOpp = component.get("v.selectedOpp");
-          var compEvt = component.getEvent("myChangeOppEvent");
-          compEvt.setParams({"oppByEvent" : getSelectedOpp});
-          compEvt.fire();
+      var compEvt = component.getEvent("myChangeOppEvent");
+      compEvt.setParams({"oppByEvent" : getSelectedOpp});
+      compEvt.fire();
     }
   })

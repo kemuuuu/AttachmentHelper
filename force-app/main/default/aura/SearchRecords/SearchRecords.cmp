@@ -3,6 +3,9 @@
   <aura:attribute name="selectedRecord" type="Object" default="{}"/>
   <aura:attribute name="listOfSearchRecords" type="Object[]"/>
   <aura:attribute name="SearchKeyWord" type="string"/>
+  <aura:attribute name="SearchTargets" type="String[]"/>
+  <aura:attribute name="iconNames" type="Object"/>
+  <aura:attribute name="iconName" type="Object"/>
   <aura:attribute name="myRecordId" type="String"/>
 
   <aura:handler name="selectedRecordEvent" event="c:SelectedRecordEvent" action="{!c.handleComponentEvent}"/>
@@ -13,9 +16,9 @@
       <div class="slds-input-has-icon slds-input-has-icon_right">
         <lightning:icon class="slds-input__icon slds-show" iconName="utility:search" size="x-small" alternativeText="search"/>
         <div aura:id="lookup-pill" class="slds-pill-container slds-hide">
-          <lightning:pill class="selectedPill" label="{!v.selectedRecord.Name}" name="{!v.selectedRecord.Name}" onremove="{! c.clear }">
+          <lightning:pill class="selectedPill" label="{!v.selectedRecord.name}" name="{!v.selectedRecord.name}" onremove="{! c.clear }">
             <aura:set attribute="media">
-              <lightning:icon iconName="standard:opportunity" size="x-small" alternativeText="opportunity"/>
+              <lightning:icon iconName="{!v.iconName}" size="x-small" alternativeText="record"/>
             </aura:set>
           </lightning:pill>
         </div>
@@ -27,7 +30,7 @@
     <ul style="min-height:40px;margin-top:0px !important" class="slds-listbox slds-listbox_vertical slds-dropdown slds-dropdown_fluid slds-lookup__menu slds" role="listbox">
       <lightning:spinner class="slds-hide" variant="brand" size="small" aura:id="mySpinner"/>
       <aura:iteration items="{!v.listOfSearchRecords}" var="singleRec">
-        <c:SearchRecordsResult rec="{!singleRec}"/>
+        <c:SearchRecordsResult rec="{!singleRec}" iconNames="{!v.iconNames}" />
       </aura:iteration>
     </ul>
   </div>

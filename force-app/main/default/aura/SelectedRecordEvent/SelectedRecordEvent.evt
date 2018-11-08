@@ -1,3 +1,4 @@
 <aura:event type="APPLICATION" description="Event template">
   <aura:attribute type="Object" name="rec" />
+  <aura:attribute type="String" name="iconName" />
 </aura:event>

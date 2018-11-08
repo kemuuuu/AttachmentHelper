@@ -3,13 +3,17 @@
     <aura:attribute type="Object" name="record" />
     <aura:attribute type="Boolean" name="isOpen" />
     <aura:attribute type="Integer" name="per" />
+    <aura:attribute type="String[]" name="targetSObjects" />
+    <aura:attribute type="Object" name="iconNames"/>
+    <aura:attribute type="String" name="iconName"/>
 
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
     <aura:handler name="selectedRecordEvent" event="c:SelectedRecordEvent" action="{!c.handleComponentEvent}"/>
     <aura:handler name="uploadedFileEvent" event="c:UploadedFileEvent" action="{!c.handleFileEvent}" />
 
     <div class="slds-m-horizontal_small">
         <div class="slds-m-top_x-small">
-            <c:SearchRecords />
+            <c:SearchRecords SearchTargets="{!v.targetSObjects}" iconName="{!v.iconName}" iconNames="{!v.iconNames}"/>
         </div>
         <div class="slds-m-top_x-small">
             <c:FileUploader uploadingFiles="{!v.files}"/>
