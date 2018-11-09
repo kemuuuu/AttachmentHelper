@@ -1,5 +1,6 @@
 .sfdx/
 .vscode/
 config/
+mdapiout/
 
 sfdx-project.json
