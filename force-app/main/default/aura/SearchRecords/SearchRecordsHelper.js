@@ -16,10 +16,11 @@
 			
 			if (state === "SUCCESS") {
 				var retval = JSON.parse(res.getReturnValue());
-				retval.forEach(function(r){
-					console.log(r);
-					resultList.push(r);
-				});
+				if (retval) {
+					retval.forEach(function(r){
+						resultList.push(r);
+					});
+				}
 				cmp.set('v.listOfSearchRecords',resultList);
 				$A.util.addClass(cmp.find("mySpinner"), "slds-hide");
 		    $A.util.removeClass(cmp.find("mySpinner"), "slds-show");
